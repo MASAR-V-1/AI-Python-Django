@@ -26,3 +26,4 @@ print("\nThe answer :")
 print(response.text)
 # llm = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.7, max_tokens=1000)
 # llm = ChatAnthropic(model="claude-3-5-sonnet-20241022", temperature=0.7, max_tokens=1000)
+
