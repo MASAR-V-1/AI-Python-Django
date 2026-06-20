@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "masar.urls"
+ROOT_URLCONF = "masar-AI-agent.urls"
 
 TEMPLATES = [
     {
@@ -66,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "masar.wsgi.application"
+WSGI_APPLICATION = "masar-AI-agent.wsgi.application"
 
 
 # Database
