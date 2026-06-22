@@ -9,6 +9,35 @@ load_dotenv()
 st.set_page_config(page_title="MASAR Chatbot", page_icon="🤖")
 st.title("MASAR's AI Agent 🤖")
 
+
+st.markdown("""
+    <style>
+        /* ضبط اتجاه الواجهة للعربية */
+        .main .block-container {
+            direction: rtl;
+            text-align: right;
+        }
+        .stChatInputContainer {
+            direction: rtl;
+        }
+        
+        /* تلوين العناوين الرئيسية بالأزرق الحيوي من الشعار */
+        h1, h2 {
+            color: #2563eb !important;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* إضفاء لمسة جمالية على أزرار وخلفيات الشات بالأخضر البترولي */
+        .stSpinner {
+            color: #0d9488 !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+
+
+
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
