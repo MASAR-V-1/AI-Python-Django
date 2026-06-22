@@ -6,13 +6,15 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+st.image("logo.png", width=100)
+
 st.set_page_config(page_title="MASAR Chatbot", page_icon="🤖")
 st.title("MASAR's AI Agent 🤖")
 
 
 st.markdown("""
     <style>
-        /* ضبط اتجاه الواجهة للعربية */
+        /* إعدادات عامة لاتجاه النص العربي */
         .main .block-container {
             direction: rtl;
             text-align: right;
@@ -21,19 +23,27 @@ st.markdown("""
             direction: rtl;
         }
         
-        /* تلوين العناوين الرئيسية بالأزرق الحيوي من الشعار */
-        h1, h2 {
-            color: #2563eb !important;
-            font-family: 'Arial', sans-serif;
+        /* 1. تنسيق الألوان في حالة الثيم الفاتح (Light Mode) */
+        @media (prefers-color-scheme: light) {
+            h1, h2 {
+                color: #2563eb !important; /* الأزرق الحيوي */
+            }
+            .stSpinner {
+                color: #0d9488 !important; /* الأخضر البترولي */
+            }
         }
         
-        /* إضفاء لمسة جمالية على أزرار وخلفيات الشات بالأخضر البترولي */
-        .stSpinner {
-            color: #0d9488 !important;
+        /* 2. تنسيق الألوان في حالة الثيم الداكن (Dark Mode) */
+        @media (prefers-color-scheme: dark) {
+            h1, h2 {
+                color: #60a5fa !important; /* درجة أزرق أفتح ومريحة للعين في الظلام */
+            }
+            .stSpinner {
+                color: #2dd4bf !important; /* درجة فيروزي مضيئة تناسب الخلفية الداكنة */
+            }
         }
     </style>
 """, unsafe_allow_html=True)
-
 
 
 
