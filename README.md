@@ -1,4 +1,4 @@
-# AI-Python-Django
+# AI-Python
 This repository is used for ai integration for the software.
 
 How to run the chatbot :
