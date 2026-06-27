@@ -3,20 +3,22 @@ name: Django CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
     
-    - name: Set up Python
+    # هنا نقوم بتهيئة بايثون وتفعيل الـ Cache لضمان ربط المكتبات ببيئة التشغيل
+    - name: Set up Python 3.11
       uses: actions/setup-python@v5
       with:
         python-version: '3.11'
+        cache: 'pip' # يقوم بحفظ الحزم وربطها بمسار الـ Python الحالي تلقائياً
 
     - name: Install Dependencies
       run: |
@@ -25,6 +27,7 @@ jobs:
         
     - name: Run Tests
       env:
-        GEMINI_API_KEY: ${{ SECRETS.GEMINI_API_KEY}}
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       run: |
+        # التأكد من تشغيل التست عبر نفس البيئة المثبت عليها الحزم
         python manage.py test
