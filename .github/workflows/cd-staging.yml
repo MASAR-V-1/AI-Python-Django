@@ -1,0 +1,31 @@
+name: Django Staging CD
+
+# 1. يشتغل هذا الملف تلقائياً فقط عند عمل Push على فرع dev أو staging
+on:
+  push:
+    branches: [ "dev", "staging" ]
+
+jobs:
+  build-and-deploy-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 2. سحب الكود الحالي من فرع التطوير
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 3. تسجيل الدخول إلى Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # 4. بناء الـ Image مع إعطائها Tag مخصص للـ staging لتمييزها عن النسخة الحية
+    - name: Build and Push Staging Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        # استبدل USERNAME باسم حسابك و APP_NAME باسم تطبيقك
+        tags: USERNAME/APP_NAME:staging
