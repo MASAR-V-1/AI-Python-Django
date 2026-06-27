@@ -20,7 +20,7 @@ Ensure you have [Docker](https://www.docker.com/) installed on your machine. Thi
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/MASAR-V-1/AI-Python.git>
    cd AI-PYTHON
 
 --- 
