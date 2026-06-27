@@ -29,7 +29,8 @@ Ensure you have [Docker](https://www.docker.com/) installed on your machine. Thi
 ### Method 2: Manual Python Setup (Alternative)
 If you prefer running the code natively without Docker, follow these steps:
 
-Create and activate a virtual environment:
+## Create and activate a virtual environment:
+
 # Windows
 python -m venv venv
 .\venv\Scripts\activate
