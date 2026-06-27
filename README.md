@@ -26,27 +26,27 @@ Ensure you have [Docker](https://www.docker.com/) installed on your machine. Thi
 --- 
 
 
-### Method 2: Manual Python Setup (Alternative)
+# Method 2: Manual Python Setup (Alternative)
 If you prefer running the code natively without Docker, follow these steps:
 
 ## Create and activate a virtual environment:
 
-# Windows
+### Windows
 python -m venv venv
 .\venv\Scripts\activate
 
-# macOS/Linux
+### macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
 
-# Install dependencies:
+### Install dependencies:
 pip install -r requirements.txt
 
 
-# Configure your .env file:
+### Configure your .env file:
 Ensure you have a .env file in the root directory with your GEMINI_API_KEY.
 
-# Run the Application:
+### Run the Application:
 
 To execute the main pipeline: python main.py
 
