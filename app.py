@@ -3,6 +3,7 @@ import streamlit as st
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from my_pdf_maker import create_pdf_report
 
 load_dotenv()
 
@@ -23,6 +24,8 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
+
 #  تثبيت العميل بالكاش
 @st.cache_resource
 def get_genai_client():
@@ -39,7 +42,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 #  استقبال المدخلات وتوليد الاستجابة بموديل مستقر
-if user_input := st.chat_input("Ask me for anything..."):
+if user_input := st.chat_input("مرحبا بك في شات مسار الذكي , كيف يمكنني مساعدتك ؟"):
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
         st.markdown(user_input)
@@ -77,3 +80,20 @@ if user_input := st.chat_input("Ask me for anything..."):
                 
                 else:
                     st.error(f"حدث خطأ أثناء الاتصال: {error_msg}")
+                    
+        
+    if "تقرير" in response or "Task" in response:
+        try:
+            # استدعاء دالة توليد التقرير
+            pdf_file = create_pdf_report(response, output_filename="AI_Report.pdf")
+            
+            # عرض زر التحميل في واجهة Streamlit
+            with open(pdf_file, "rb") as file:
+                st.download_button(
+                    label="📥 تحميل التقرير بصيغة PDF",
+                    data=file,
+                    file_name="AI_Report.pdf",
+                    mime="application/pdf"
+                )
+        except Exception as e:
+            st.error(f"حدث خطأ أثناء توليد ملف الـ PDF: {e}")
