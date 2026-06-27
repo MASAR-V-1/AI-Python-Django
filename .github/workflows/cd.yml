@@ -1,0 +1,31 @@
+name: Django Docker CD
+
+# 1. تحديد متى يشتغل هذا الملف تلقائياً (عند الـ Push على فرع main)
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 2. سحب الكود الحالي للمشروع داخل بيئة GitHub
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # 3. تسجيل الدخول تلقائياً إلى حسابك في Docker Hub لرفع النسخة الجديدة
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # 4. بناء الـ Docker Image بناءً على الـ Dockerfile الموجود في مشروعك وضغطه
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        # استبدل USERNAME باسم حسابك على دوكر هاب و APP_NAME باسم تطبيقك
+        tags: USERNAME/APP_NAME:latest
